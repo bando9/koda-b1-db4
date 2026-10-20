@@ -1,6 +1,10 @@
--- DROP TABLE IF EXISTS users;
--- DROP TABLE IF EXISTS roles;
--- DROP TABLE IF EXISTS sessions;
+-- CREATE DATABASE bakso_satelit_db;
+
+-- select tablename from pg_tables where schemaname = 'public'
+
+-- DROP TABLE IF EXISTS users cascade;
+-- DROP TABLE IF EXISTS roles cascade;
+-- DROP TABLE IF EXISTS sessions cascade;
 
 
 -- create table users(
@@ -21,8 +25,8 @@
 -- CREATE TABLE sessions (
 --     id INTEGER generated ALWAYS as IDENTITY primary key,
 --     user_id INTEGER NOT NULL REFERENCES users(id),
---     auth_token VARCHAR(255),
---     refresh_token VARCHAR(255),
+--     auth_token VARCHAR(255) not null unique,
+--     refresh_token VARCHAR(255) not null unique,
 --     expires_at TIMESTAMP
 -- );
 
@@ -50,4 +54,5 @@
 -- (4, 'auth_token', 'refresh_token', '20/10/2026'),
 -- (2, 'auth_token', 'refresh_token', '20/10/2026'),
 -- (1, 'auth_token', 'refresh_token', '21/10/2026');
+
 
