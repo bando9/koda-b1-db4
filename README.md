@@ -6,18 +6,34 @@ erDiagram
     users {
         int id PK
         string name
-        string password_hash
         string username
+        string email
+        string password_id FK
     }
 
-    roles_users {
+    password {
+        int id PK
+        string user_id FK
+        string hash
+    }
+    users ||--|| password: have
+
+    roles {
+        int id PK
+        string name "enum(admin, user)"
+        string description
+    }
+
+    role_users {
         int id PK
         int user_id FK
-        string role "enum(admin, user)"
-        string permissions
+        int roles_id FK
     }
 
-    session {
+    role_users ||--|| users: have
+    role_users ||--|| roles: have
+
+    sessions {
         int id PK
         int user_id FK
         string auth_token
@@ -25,8 +41,9 @@ erDiagram
         string expires_at
     }
 
-    users ||--|| roles_users: in
-    users ||--|| session: have
+    sessions ||--|| users: have
+
+
 
 
 
